@@ -6,7 +6,7 @@ A simplistic game engine for Java. It evolves around state driven design allowin
 Documentation
 -------------
 
-All methods and variables should have JavaDoc. The JavaDoc will be available online soon, but for now refer to `/docs` or the JavaDoc above the identifer.
+The JavaDoc is available online at [theempty.github.com/ejg](http://theempty.github.com/ejg) and in `/docs`.
 
 Entry Point
 -----------
