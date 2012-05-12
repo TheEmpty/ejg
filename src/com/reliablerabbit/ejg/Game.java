@@ -96,7 +96,7 @@ public class Game implements WindowStateListener {
 	public Canvas getCanvas() { return canvas; }
 	
 	/**
-	 * Create or re-create the GUI
+	 * Create or re-create the GUI, no longer shows the GUI right away, call: getFrame().setVisible(true);
 	 */
 	public void createGUI() {
 		// If Apple computer, listen for quit message
@@ -158,7 +158,7 @@ public class Game implements WindowStateListener {
 		// pack
 		frame.add(canvas);
 		frame.pack();
-		frame.setVisible(true);
+		// frame.setVisible(true);
 		
 		// buffer
 		canvas.createBufferStrategy(2);

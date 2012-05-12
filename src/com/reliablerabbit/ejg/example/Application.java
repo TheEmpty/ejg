@@ -6,8 +6,6 @@ import com.reliablerabbit.ejg.Game;
 import com.reliablerabbit.ejg.Sound;
 
 public class Application {
-	// TODO: physics
-	
 	public static final int NANOSECONDS_IN_A_MILLISECOND = 1000000;
 	public static final int NANOSECONDS_IN_A_SECOND = 1000000000;
 
@@ -35,34 +33,35 @@ public class Application {
 		game.setDefaultGameHeight(600);
 		game.createGUI();
 		game.getFrame().setTitle("Testing application"); // need to initalize so frame exist
+		game.getFrame().setVisible(true);
 		
 		// Setup Gamestates (wait until after GUI is created since we attack to canvas and frame for keys)
 		game.setGameState(new TitleLogic(game), false);
 		
-		try {
-			while(true) {
+		// quit flag
+		boolean running = true;
+		game.running = running;
 		
-				// Logic
-				game.tick();
+		while(running) {
+			// Logic
+			game.tick();
 				
-				// FPS cap, skip
-				if((System.nanoTime() - nextRender) >= 0) {
-					game.render();
-					renderedFrames++;
-					nextRender = System.nanoTime() + (NANOSECONDS_IN_A_SECOND/targetFramesPerSecond);
-				}
-				
-				// FPS update
-				if(System.nanoTime() - lastFramesPerSecondUpdate >= NANOSECONDS_IN_A_SECOND) {
-					currentFramesPerSecond = renderedFrames;
-					renderedFrames = 0;
-					lastFramesPerSecondUpdate = System.nanoTime();
-				    // System.out.println("FPS: " + currentFramesPerSecond);
-				}
+			// FPS cap, skip
+			if((System.nanoTime() - nextRender) >= 0) {
+				game.render();
+				renderedFrames++;
+				nextRender = System.nanoTime() + (NANOSECONDS_IN_A_SECOND/targetFramesPerSecond);
 			}
-		} finally {
-			GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow( null );
+				
+			// FPS update
+			if(System.nanoTime() - lastFramesPerSecondUpdate >= NANOSECONDS_IN_A_SECOND) {
+				currentFramesPerSecond = renderedFrames;
+				renderedFrames = 0;
+				lastFramesPerSecondUpdate = System.nanoTime();
+			    // System.out.println("FPS: " + currentFramesPerSecond);
+			}
 		}
+		GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow( null );
 	}
 }
 
