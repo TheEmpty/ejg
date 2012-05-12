@@ -1,0 +1,6 @@
+.settings/*
+.classpath
+.project
+private-res/*
+src/com/isscary/*
+bin/*
